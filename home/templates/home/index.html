@@ -1,0 +1,46 @@
+{% extends 'home/base.html' %}
+
+{% block body %}
+{% if user.is_authenticated %}
+    <div class="container">
+        <div class="col-md-4">
+            <h2>Welcome!</h2>
+
+                <p> Make an appointment and start your eCounselling experience </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Appoinment Requests</h2>
+            {% for entry in all_entries %}
+                {% if entry.confirmed == False %}
+                    <a href="/appointment/{{entry.id}}/"><h4>{{ entry.date }}</h4></a>
+
+                        <h4>{{ entry.reason }}</h4>
+
+                    <br/>
+                {% endif%}
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <h2>Confirmed Appoinments</h2>
+            {% for entry in all_entries %}
+                {% if entry.confirmed == True %}
+
+                    <a href="/chat/"><h4>{{ entry.date }}</h4></a>
+
+                        <h4>{{ entry.reason }}</h4>
+
+                    <br/>
+                {%endif%}
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <form action="/home/login/">
+        <input type="submit" value="Login" />
+    </form>
+    <form action="/home/signup/">
+        <input type="submit" value="Sign Up" />
+    </form>
+{% endif %}
+
+{% endblock %}

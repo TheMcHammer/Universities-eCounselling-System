@@ -1,0 +1,12 @@
+<div class="calender_entry col-lg-4">
+
+    <br />
+    <h4>{{ entry.creator }}</h4>
+    <h4>{{ entry.reason }}</h4>
+    <h4>{{ entry.date }}</h4>
+    <h4>{{ entry.confirmed }}</h4>
+    <p>
+        {{ entry.description }}
+    </p>
+    <button class="btn"><a href="/appointment/{{entry.id}}/">View Details</a></button>
+</div>

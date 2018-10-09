@@ -1,0 +1,35 @@
+{% extends 'home/base.html' %}
+{% block title %}Make an Appointment{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(".auto-submit").change(function() {
+        $(this).closest("form").submit();
+    });
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <form class="form-horizontal" action="" method="post">
+                        {% csrf_token %}
+                        {% include 'appointment/form_template.html' %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-sucess">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

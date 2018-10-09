@@ -1,0 +1,42 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(".auto-submit").change(function() {
+        $(this).closest("form").submit();
+    });
+</script>
+{% for field in form %}
+    {% if field.name == "creator" %}
+        <div class="auto-submit">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+    {% else %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <span class="text-danger small">{{ field.errors }}</span>
+            </div>
+            <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+            <div class="col-sm-10">{{ field }}</div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+{% block page_css %}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" />
+{% endblock %}
+
+{% block page_js %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+      $('#id_date').datetimepicker({
+        format: 'MM/DD/YYYY HH:mm',
+        extraFormats: ['YYYY-MM-DD HH:mm:ss'],
+        sideBySide: true
+      });
+  });
+</script>
+{% endblock %}

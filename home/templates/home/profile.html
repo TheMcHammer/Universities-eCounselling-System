@@ -1,0 +1,21 @@
+{% extends 'home/base.html'%}
+
+{%block head%}
+<h1>Profile</h1>
+
+{%endblock%}
+
+{%block body%}
+<div class = 'container'>
+    <p>Username: {{ user }}</p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>University: {{ userprofile.university }}</p>
+    <p>gender: {{ user.gender }}</p>
+    <p>user type: {{ user.group }}</p>
+</div>
+<div>
+    <button><a href="edit/">Edit Profile</a></button>
+</div>
+{%endblock%}

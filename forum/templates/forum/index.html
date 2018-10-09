@@ -1,0 +1,49 @@
+{% extends 'home/base.html' %}
+
+{% block body %}
+
+<br>
+  <section class="hero is-info">
+    <div class="hero-body has-text-centered">
+      <div class="container">
+        <h1 class="title is-2">
+          eCounselling Chat
+        </h1>
+        <h2 class="subtitle is-5">
+          An exploration into eCounselling Chat.
+          <br/> Join one of the rooms below to start your adventure
+        </h2>
+      </div>
+    </div>
+  </section>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        {% for room in rooms %}
+        <div class="column">
+          <div class="card rounded-edges">
+            <div class="card-content">
+              <p class="title is-4">{{room.name}}</p>
+              <div class="content">
+                <p>
+                  {{room.description}}
+                </p>
+                <a href="rooms/{{room.slug}}" class="button">Join Room</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</body>
+
+{% endblock %}

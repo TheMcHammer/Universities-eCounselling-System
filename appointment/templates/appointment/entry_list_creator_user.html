@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+
+{% block body %}
+    <h1> Appointments </h1>
+
+    {% if entry_list %}
+    <ul>
+      {% for entryinst in entry_list %}
+      <li class="text-danger">
+        <a href="{% url 'appointment:my-entries' entryinst.entry.pk %}">{{entryinst.entry.name}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>You have no Appointments.</p>
+    {% endif %}
+
+{% endblock %}

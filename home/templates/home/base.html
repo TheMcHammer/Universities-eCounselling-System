@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>{% block title %}eCounselling{% endblock %}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% load static %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<!--<link rel="stylesheet" href="{%static 'home/font-awesome/css/font-awesome.min.css'%}"/>-->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="shortcut icon" href="//www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.icon">
+		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />-->
+		<link rel="stylesheet" href="{% static 'forum/styles/room_detail.css' %}">
+		<link rel="stylesheet" href="{% static 'home/styles.css' %}">
+		<!-- <link rel='stylesheet' href="{% static 'home/css/bootstrap.min.css' %}" type="text/css"> -->
+	</head>
+
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{% url 'home:index' %}"><img src = "{% static 'forum/images/zzen.jpg' %}" id="logo"></a>
+					<h1 class="navbar-text">eCounselling</h1>
+				</div>
+
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li><a href="{% url 'home:index'%}">Home</a></li>
+						<li><a href="{% url 'appointment:index'%}">Appointment</a></li>
+						<li><a href="{% url 'chat:private_rooms'%}">Chat</a></li>
+						<li><a href="{% url 'forum:all_rooms'%}">Forum</a></li>
+
+					</ul>
+
+
+
+					<ul class="nav navbar-nav navbar-right">
+
+						<!--<li>
+							<form class="navbar form navbar-right" role="search" method="get" action="#">
+								<div class="form-group">
+									<button type="submit" class="btn btn-default">Search</button>
+									<input type="text" class="form-control" name="q" value="">
+								</div>
+
+							</form>
+
+						</li>-->
+						{% if user.is_authenticated %}
+
+						<li>
+							<a href="{% url 'appointment:entry-add' %}">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true">Make Appointment</span>
+							</a>
+						</li>
+						<li><a href="{% url 'home:view_profile' %}">My Profile</a></li>
+						<li>
+							<li><b>Welcome, {{ user.get_username }}</b></li>
+							<form class="logout-link" action="/home/logout/" method="post">
+								{% csrf_token%}
+								<button type="submit">Logout</button>
+							</form>
+						</li>
+						{% else %}
+						<li><a href="{% url 'home:login'%}">Login</a></li>
+						<li><a href="{% url 'home:signup'%}">Signup</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+
+		</nav>
+		<div class="wrapper">
+		{% block head %}
+		{% endblock %}
+		{% block body %}
+
+		{% endblock %}
+		</div>
+		<!--<footer class="container-fluid text-center">
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>Contact Us</h3>
+
+					<h4>our address and contact info here</h4>
+				</div>
+				<div class="col-sm-3">
+					<h3>Connect</h3>
+					<a href="https://www.facebook.com/buritransporterscompany/" class="fa fa-facebook"></a>
+				</div>
+				<div class="col-sm-3">
+
+				</div>
+			</div>
+			<!--<a href="#myPage" title="To Top">
+			<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
+		</footer>-->
+
+
+	</body>
+</html>

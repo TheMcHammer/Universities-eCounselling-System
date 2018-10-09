@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+
+{% block body %}
+
+    <form action="/appointment/entry/add/">
+        <input type="submit" value="Make Appointment" />
+    </form>
+    </br>
+
+    <div class="container">
+        <div class="row">
+            {%for entry in all_entries%}
+                {% include 'appointment/_calender_entry.html' %}
+            {%endfor%}
+        </div>
+    </div>
+
+{% endblock %}
